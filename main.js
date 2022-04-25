@@ -16,14 +16,20 @@ window.addEventListener('DOMContentLoaded', () => {
         list.innerHTML += `<li>- ${e.target.value}</li>`;
         text.value = '';
       }
-  });
-  text.addEventListener('submit', (e) => {
-    /* console.log(e.value); */
 
+    if (e.key === 'Enter')
       if (e.target.value) {
         list.innerHTML += `<li>- ${e.target.value}</li>`;
         text.value = '';
       }
+  });
+  text.addEventListener('submit', (e) => {
+    /* console.log(e.value); */
+
+    if (e.target.value) {
+      list.innerHTML += `<li>- ${e.target.value}</li>`;
+      text.value = '';
+    }
   });
 
   list.addEventListener('click', (event) => {
