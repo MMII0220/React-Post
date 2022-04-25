@@ -4,6 +4,7 @@
   box-sizing: border-box;
 }
 body {
+  background-color: orange;
   font-family: 'Tapestry', cursive;
 }
 li {
@@ -53,6 +54,7 @@ li {
 }
 .list {
   list-style: none;
-  font-size: 1.5rem;
+  font-size: 2.2rem;
   width: 75%;
+  font-weight: 900;
 }
