@@ -1,0 +1,58 @@
+/* font-family: 'Tapestry', cursive; */
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Tapestry', cursive;
+}
+li {
+  display: block;
+}
+.container {
+  width: 95%;
+  margin: auto;
+  display: flex;
+}
+.main {
+}
+.grocery--list {
+  width: 600px;
+  min-height: 100vh;
+  padding-top: 20px;
+  margin: auto;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-direction: column;
+  background-color: white;
+  box-shadow: 10px 10px 24px 0px rgb(0 0 0 / 50%);
+}
+.sup__title {
+  font-size: 3rem;
+  text-align: center;
+}
+.add {
+  width: 75%;
+  display: flex;
+  justify-content: center;
+}
+.add__text {
+  font-family: inherit;
+  outline: 0;
+  border: 0;
+  width: 100%;
+  font-size: 1.5rem;
+  border-bottom: 3px solid black;
+}
+.pencil {
+  cursor: pointer;
+  content: '\f303';
+  font-size: 2rem;
+  color: orange;
+}
+.list {
+  list-style: none;
+  font-size: 1.5rem;
+  width: 75%;
+}
