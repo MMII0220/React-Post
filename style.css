@@ -15,8 +15,6 @@ li {
   margin: auto;
   display: flex;
 }
-.main {
-}
 .grocery--list {
   width: 600px;
   min-height: 100vh;
