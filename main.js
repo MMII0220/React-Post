@@ -11,10 +11,11 @@ window.addEventListener('DOMContentLoaded', () => {
   text.addEventListener('keydown', (e) => {
     /* console.log(e.value); */
 
-    if (e.code === 'Enter') {
-      list.innerHTML += `<li>- ${e.target.value}</li>`;
-      text.value = '';
-    }
+    if (e.code === 'Enter')
+      if (e.target.value) {
+        list.innerHTML += `<li>- ${e.target.value}</li>`;
+        text.value = '';
+      }
   });
 
   list.addEventListener('click', (event) => {
