@@ -44,6 +44,25 @@ li {
   font-size: 1.5rem;
   border-bottom: 3px solid black;
 }
+.add__mobile {
+  display: none;
+  background: none;
+  background-color: #f8f3f3;
+  border: none;
+  font-size: 1rem;
+  font-family: 'Tapestry', cursive;
+  border-radius: 10px;
+
+  transition: 0.2s linear background-color, 0.4s linear color;
+}
+.add__mobile:hover {
+  background-color: rgb(119, 100, 100);
+  color: #fff;
+}
+.add__mobile:focus {
+  background-color: rgb(119, 100, 100);
+  color: #fff;
+}
 .pencil {
   cursor: pointer;
   content: '\f303';
@@ -55,4 +74,41 @@ li {
   font-size: 2.2rem;
   width: 75%;
   font-weight: 900;
+}
+.show {
+  animation-name: show;
+  animation-duration: 0.5s;
+}
+/* Animation
+
+*******************/
+
+@keyframes show {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Media
+
+ ************/
+@media (min-height: 900px) {
+  .add__mobile {
+    display: block;
+  }
+}
+
+@media (max-width: 1024px) {
+  .add__mobile {
+    display: block;
+  }
+}
+
+@media (orientation: landscape) {
+  .add__mobile {
+    display: block;
+  }
 }
