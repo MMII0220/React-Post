@@ -4,8 +4,9 @@ import React, { useMemo, useState } from 'react';
 import PostList from './compontns/PostList';
 import PostForm from './compontns/PostForm';
 import './styles/App.css';
-import MySelect from './compontns/UI/select/MySelect';
-import MyInput from './compontns/UI/input/MyInput';
+// import MySelect from './compontns/UI/select/MySelect';
+// import MyInput from './compontns/UI/input/MyInput';
+import PostFilter from './compontns/PostFilter';
 
 
 function App() {
@@ -16,22 +17,19 @@ function App() {
     {id: 4, title: 'Node.js', description:'For backend'},
   ]);
 
-  const [selectedSort, setSelectedSort] = useState('');
-
-  // Поиск по постов
-  const [searchQuery, setSearchQuery] = useState('');
+  const [filter, setFilter] = useState({ sort: '', query: '' });
 
   const sortedPosts = useMemo(() => {
-    if (selectedSort) {
-      return [...posts].sort((a, b) => a[selectedSort].localeCompare(b[selectedSort]));
+    if (filter.sort) {
+      return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
     }
     return posts;
-  }, [selectedSort, posts]);
+  }, [filter.sort, posts]);
 
   // Сортируем и находим нужный пост
   const sortedAndSeaechedPost = useMemo(() => {
-    return sortedPosts.filter((post) => post.title.toLowerCase().includes(searchQuery) );
-  }, [searchQuery, sortedPosts]);
+    return sortedPosts.filter((post) => post.title.toLowerCase().includes(filter.query.toLowerCase()) );
+  }, [filter.query, sortedPosts]);
 
   // Создаем Пост
   const createPost = (newPost) => {
@@ -43,34 +41,16 @@ function App() {
     setPosts(posts.filter((item) => item.id !== post.id));
   };
 
-  // Сортируем посты
-  const sortPosts = (sort) => {
-    setSelectedSort(sort);
-  };
-
-  
 
   return (
     <>
       <div className='App'>
         <PostForm create={createPost} />
         <hr style={{margin: '15px 0'}} />
-        <div>
-          <MyInput
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Поиск..."
-          />
-          <MySelect
-            value={selectedSort}
-            onChange={sortPosts}
-            defaultValue="Сортировка"
-            options={[
-              {value: 'title', name: 'по названию'},
-              {value: 'description', name: 'по описанию'}
-            ]}
-          />
-        </div>
+        <PostFilter
+          filter={filter}
+          setFilter={setFilter}
+        />
         {sortedAndSeaechedPost.length === 0 ?
           <p className='decor'>Посты не найдены</p> :
           <PostList remove={removePost} posts={sortedAndSeaechedPost} title='Список Постов' />
