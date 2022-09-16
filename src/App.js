@@ -51,10 +51,7 @@ function App() {
           filter={filter}
           setFilter={setFilter}
         />
-        {sortedAndSeaechedPost.length === 0 ?
-          <p className='decor'>Посты не найдены</p> :
-          <PostList remove={removePost} posts={sortedAndSeaechedPost} title='Список Постов' />
-        }
+        <PostList remove={removePost} posts={sortedAndSeaechedPost} title='Список Постов' />
       </div>
     </>
   );
