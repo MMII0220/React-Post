@@ -7,6 +7,8 @@ import './styles/App.css';
 // import MySelect from './compontns/UI/select/MySelect';
 // import MyInput from './compontns/UI/input/MyInput';
 import PostFilter from './compontns/PostFilter';
+import MyModal from './compontns/UI/MyModal/MyModal';
+import MyButton from './compontns/UI/button/MyButton';
 
 
 function App() {
@@ -18,6 +20,7 @@ function App() {
   ]);
 
   const [filter, setFilter] = useState({ sort: '', query: '' });
+  const [modal, setModal] = useState(false);
 
   const sortedPosts = useMemo(() => {
     if (filter.sort) {
@@ -34,6 +37,7 @@ function App() {
   // Создаем Пост
   const createPost = (newPost) => {
     setPosts([...posts, newPost]);
+    setModal(false);
   };
 
   // Удаляем нужный пост
@@ -45,7 +49,12 @@ function App() {
   return (
     <>
       <div className='App'>
-        <PostForm create={createPost} />
+        <MyButton style={{marginTop: '3%'}} onClick={() => setModal(true)}>
+          Создать пользователя
+        </MyButton>
+        <MyModal visible={modal} setVisible={setModal}>
+          <PostForm create={createPost} />
+        </MyModal>
         <hr style={{margin: '15px 0'}} />
         <PostFilter
           filter={filter}
