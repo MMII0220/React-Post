@@ -29,5 +29,5 @@ const PostList = ({ posts, title, remove }) => {
     </>
   );
 };
-// <PostItem post={post} title='Список Постов' key={post.id} />
+
 export default PostList;
