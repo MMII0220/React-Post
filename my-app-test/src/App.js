@@ -9,7 +9,7 @@ import './styles/App.css';
 import PostFilter from './compontns/PostFilter';
 import MyModal from './compontns/UI/MyModal/MyModal';
 import MyButton from './compontns/UI/button/MyButton';
-import axios from 'axios';
+import PostService from './API/PostService';
 
 
 function App() {
@@ -43,8 +43,8 @@ function App() {
   };
 
   async function fetchPosts() {
-    const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
-    setPosts(response.data);
+    const posts = await PostService.getAll();
+    setPosts(posts);
   }
 
   useEffect(() => {
