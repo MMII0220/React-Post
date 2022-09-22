@@ -45,7 +45,6 @@ function App() {
     setPosts(posts.filter((item) => item.id !== post.id));
   };
 
-
   return (
     <>
       <div className='App'>
