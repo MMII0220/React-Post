@@ -12,6 +12,7 @@ import MyButton from './compontns/UI/button/MyButton';
 import PostService from './API/PostService';
 import Loader from './compontns/UI/Loader/Loader';
 import { useFetchingPost } from './hooks/useFetchingPost';
+import { getPageCount, getPagesArray } from './utils/pages';
 
 
 function App() {
@@ -19,10 +20,18 @@ function App() {
 
   const [filter, setFilter] = useState({ sort: '', query: '' });
   const [modal, setModal] = useState(false);
+  const [totalPages, setTotalPages] = useState(0);
+  const [limit, setLimit] = useState(10);
+  const [page, setPage] = useState(1);
+
   const [fetchPosts, isPostsLoading, postError] = useFetchingPost(async () => {
-    const posts = await PostService.getAll();
-    setPosts(posts);
+    const response = await PostService.getAll(limit, page);
+    setPosts(response.data);
+    const totalCount = response.headers['x-total-count'];
+    setTotalPages(getPageCount(totalCount, limit));
   });
+
+  let pagesArray = getPagesArray(totalPages);
 
   // Сортируем Посты
   const sortedPosts = useMemo(() => {
@@ -75,6 +84,17 @@ function App() {
         ? <div style={{display: 'flex', justifyContent: 'center', marginTop: 30}}><Loader /></div>
         : <PostList remove={removePost} posts={sortedAndSeaechedPost} title='Список Постов' />
         }
+        <div className='page__wrapper'>
+          {pagesArray.map((p) =>
+            <span
+              onClick={() => setPage(p)}
+              key={p}
+              className={page === p ? 'page   page__current' : 'page'}
+            >
+              {p}
+            </span>
+          )}
+        </div>
       </div>
     </>
   );
