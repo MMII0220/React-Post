@@ -59,7 +59,11 @@ function App() {
 
   useEffect(() => {
     fetchPosts();
-  }, []);
+  }, [page]);
+
+  const changePage = (page) => {
+    setPage(page);
+  };
 
   return (
     <>
@@ -87,7 +91,7 @@ function App() {
         <div className='page__wrapper'>
           {pagesArray.map((p) =>
             <span
-              onClick={() => setPage(p)}
+              onClick={() => changePage(p)}
               key={p}
               className={page === p ? 'page   page__current' : 'page'}
             >
