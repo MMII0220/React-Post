@@ -9,19 +9,16 @@ import './styles/App.css';
 import PostFilter from './compontns/PostFilter';
 import MyModal from './compontns/UI/MyModal/MyModal';
 import MyButton from './compontns/UI/button/MyButton';
+import axios from 'axios';
 
 
 function App() {
-  const [posts, setPosts] = useState([
-    {id: 1, title: 'Javascript', description:'For Web sites'},
-    {id: 2, title: 'CSS', description:'For decoration web pages'},
-    {id: 3, title: 'HTML', description:'For visualising web pages'},
-    {id: 4, title: 'Node.js', description:'For backend'},
-  ]);
+  const [posts, setPosts] = useState([]);
 
   const [filter, setFilter] = useState({ sort: '', query: '' });
   const [modal, setModal] = useState(false);
 
+  // Сортируем Посты
   const sortedPosts = useMemo(() => {
     if (filter.sort) {
       return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
@@ -29,7 +26,7 @@ function App() {
     return posts;
   }, [filter.sort, posts]);
 
-  // Сортируем и находим нужный пост
+  // Поикс нужного Поста
   const sortedAndSeaechedPost = useMemo(() => {
     return sortedPosts.filter((post) => post.title.toLowerCase().includes(filter.query.toLowerCase()) );
   }, [filter.query, sortedPosts]);
@@ -45,9 +42,15 @@ function App() {
     setPosts(posts.filter((item) => item.id !== post.id));
   };
 
+  async function fetchPosts() {
+    const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
+    setPosts(response.data);
+  }
+
   return (
     <>
       <div className='App'>
+        <button onClick={fetchPosts}>GET POSTS</button>
         <MyButton style={{marginTop: '3%'}} onClick={() => setModal(true)}>
           Создать пользователя
         </MyButton>
