@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 // import Counter from './compontns/Counter';
 // import PostItem from './compontns/PostItem';
 import PostList from './compontns/PostList';
@@ -46,6 +46,10 @@ function App() {
     const response = await axios.get('https://jsonplaceholder.typicode.com/posts');
     setPosts(response.data);
   }
+
+  useEffect(() => {
+    fetchPosts();
+  }, []);
 
   return (
     <>
