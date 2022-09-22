@@ -10,6 +10,7 @@ import PostFilter from './compontns/PostFilter';
 import MyModal from './compontns/UI/MyModal/MyModal';
 import MyButton from './compontns/UI/button/MyButton';
 import PostService from './API/PostService';
+import Loader from './compontns/UI/Loader/Loader';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
 
   const [filter, setFilter] = useState({ sort: '', query: '' });
   const [modal, setModal] = useState(false);
+  const [isPostLoading, setIsPostLoading] = useState(false);
 
   // Сортируем Посты
   const sortedPosts = useMemo(() => {
@@ -43,8 +45,12 @@ function App() {
   };
 
   async function fetchPosts() {
-    const posts = await PostService.getAll();
-    setPosts(posts);
+    setIsPostLoading(true);
+    setTimeout(async () => {
+      const posts = await PostService.getAll();
+      setPosts(posts);
+      setIsPostLoading(false);
+    }, 1000);
   }
 
   useEffect(() => {
@@ -66,7 +72,10 @@ function App() {
           filter={filter}
           setFilter={setFilter}
         />
-        <PostList remove={removePost} posts={sortedAndSeaechedPost} title='Список Постов' />
+        {isPostLoading
+        ? <div style={{display: 'flex', justifyContent: 'center', marginTop: 30}}><Loader /></div>
+        : <PostList remove={removePost} posts={sortedAndSeaechedPost} title='Список Постов' />
+        }
       </div>
     </>
   );
