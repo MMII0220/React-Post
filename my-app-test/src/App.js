@@ -13,6 +13,7 @@ import PostService from './API/PostService';
 import Loader from './compontns/UI/Loader/Loader';
 import { useFetchingPost } from './hooks/useFetchingPost';
 import { getPageCount, getPagesArray } from './utils/pages';
+import Pagination from './compontns/UI/pagination/Pagination';
 
 
 function App() {
@@ -31,7 +32,7 @@ function App() {
     setTotalPages(getPageCount(totalCount, limit));
   });
 
-  let pagesArray = getPagesArray(totalPages);
+  
 
   // Сортируем Посты
   const sortedPosts = useMemo(() => {
@@ -88,17 +89,11 @@ function App() {
         ? <div style={{display: 'flex', justifyContent: 'center', marginTop: 30}}><Loader /></div>
         : <PostList remove={removePost} posts={sortedAndSeaechedPost} title='Список Постов' />
         }
-        <div className='page__wrapper'>
-          {pagesArray.map((p) =>
-            <span
-              onClick={() => changePage(p)}
-              key={p}
-              className={page === p ? 'page   page__current' : 'page'}
-            >
-              {p}
-            </span>
-          )}
-        </div>
+        <Pagination
+          page={page}
+          changePage={changePage}
+          totalPages={totalPages}
+        />
       </div>
     </>
   );
