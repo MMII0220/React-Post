@@ -1,102 +1,21 @@
-import React, { useEffect, useMemo, useState } from 'react';
-// import Counter from './compontns/Counter';
-// import PostItem from './compontns/PostItem';
-import PostList from './compontns/PostList';
-import PostForm from './compontns/PostForm';
+import React from 'react';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import About from './components/UI/pages/About';
+import Posts from './components/UI/pages/Posts';
 import './styles/App.css';
-// import MySelect from './compontns/UI/select/MySelect';
-// import MyInput from './compontns/UI/input/MyInput';
-import PostFilter from './compontns/PostFilter';
-import MyModal from './compontns/UI/MyModal/MyModal';
-import MyButton from './compontns/UI/button/MyButton';
-import PostService from './API/PostService';
-import Loader from './compontns/UI/Loader/Loader';
-import { useFetchingPost } from './hooks/useFetchingPost';
-import { getPageCount, getPagesArray } from './utils/pages';
-import Pagination from './compontns/UI/pagination/Pagination';
 
 
-function App() {
-  const [posts, setPosts] = useState([]);
-
-  const [filter, setFilter] = useState({ sort: '', query: '' });
-  const [modal, setModal] = useState(false);
-  const [totalPages, setTotalPages] = useState(0);
-  const [limit, setLimit] = useState(10);
-  const [page, setPage] = useState(1);
-
-  const [fetchPosts, isPostsLoading, postError] = useFetchingPost(async () => {
-    const response = await PostService.getAll(limit, page);
-    setPosts(response.data);
-    const totalCount = response.headers['x-total-count'];
-    setTotalPages(getPageCount(totalCount, limit));
-  });
-
-  
-
-  // Сортируем Посты
-  const sortedPosts = useMemo(() => {
-    if (filter.sort) {
-      return [...posts].sort((a, b) => a[filter.sort].localeCompare(b[filter.sort]));
-    }
-    return posts;
-  }, [filter.sort, posts]);
-
-  // Поикс нужного Поста
-  const sortedAndSeaechedPost = useMemo(() => {
-    return sortedPosts.filter((post) => post.title.toLowerCase().includes(filter.query.toLowerCase()) );
-  }, [filter.query, sortedPosts]);
-
-  // Создаем Пост
-  const createPost = (newPost) => {
-    setPosts([...posts, newPost]);
-    setModal(false);
-  };
-
-  // Удаляем нужный пост
-  const removePost = (post) => {
-    setPosts(posts.filter((item) => item.id !== post.id));
-  };
-
-  useEffect(() => {
-    fetchPosts();
-  }, [page]);
-
-  const changePage = (page) => {
-    setPage(page);
-  };
-
+const App = () => {
   return (
-    <>
-      <div className='App'>
-        <button onClick={fetchPosts}>GET POSTS</button>
-        <MyButton style={{marginTop: '3%'}} onClick={() => setModal(true)}>
-          Создать пользователя
-        </MyButton>
-        <MyModal visible={modal} setVisible={setModal}>
-          <PostForm create={createPost} />
-        </MyModal>
-        <hr style={{margin: '15px 0'}} />
-        <PostFilter
-          filter={filter}
-          setFilter={setFilter}
-        />
-        {
-          postError &&
-          <h1>Произошла ошибка {postError}</h1>
-        }
-        {isPostsLoading
-        ? <div style={{display: 'flex', justifyContent: 'center', marginTop: 30}}><Loader /></div>
-        : <PostList remove={removePost} posts={sortedAndSeaechedPost} title='Список Постов' />
-        }
-        <Pagination
-          page={page}
-          changePage={changePage}
-          totalPages={totalPages}
-        />
-      </div>
-    </>
+    <BrowserRouter>
+        <Route path='/about'>
+          <About />
+        </Route>
+        <Route path='/posts'>
+          <Posts />
+        </Route>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
