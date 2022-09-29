@@ -1,21 +1,19 @@
-import React from 'react';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import About from './components/UI/pages/About';
-import Posts from './components/UI/pages/Posts';
+import React from "react";
+import {
+  BrowserRouter,
+} from "react-router-dom";
+import Navbar from './components/UI/Navbar/Navbar';
+import AppRouter from "./components/AppRouter";
 import './styles/App.css';
+  
 
 
-const App = () => {
+export default function App() {
   return (
     <BrowserRouter>
-        <Route path='/about'>
-          <About />
-        </Route>
-        <Route path='/posts'>
-          <Posts />
-        </Route>
+      <Navbar />
+
+      <AppRouter />
     </BrowserRouter>
   );
-};
-
-export default App;
+}
