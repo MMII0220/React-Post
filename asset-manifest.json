@@ -1,0 +1,29 @@
+{
+  "files": {
+    "main.css": "/React-Post/static/css/main.119e1da0.css",
+    "main.js": "/React-Post/static/js/main.8cc4317e.js",
+    "static/media/ava.png": "/React-Post/static/media/ava.67fc84c8751500e115ee.png",
+    "static/media/banner.jpg": "/React-Post/static/media/banner.8cf9abac182f64f40bea.jpg",
+    "static/media/Photoshop_CC_icon.png": "/React-Post/static/media/Photoshop_CC_icon.1c34140e78151550327c.png",
+    "static/media/Typescript_logo_2020.svg.png": "/React-Post/static/media/Typescript_logo_2020.svg.7fd3927444159dcdd965.png",
+    "static/media/blender-3521310-2944729.webp": "/React-Post/static/media/blender-3521310-2944729.7410da74695fd49e278a.webp",
+    "static/media/sass_original_logo_icon_146350.svg": "/React-Post/static/media/sass_original_logo_icon_146350.8ec1693844d3eb12c43f.svg",
+    "static/media/react_original_wordmark_logo_icon_146375.svg": "/React-Post/static/media/react_original_wordmark_logo_icon_146375.9e9c78facb4ac0be2d28.svg",
+    "static/media/github_git_hub_logo_icon_132878.svg": "/React-Post/static/media/github_git_hub_logo_icon_132878.394173cd3945e454ad59.svg",
+    "static/media/file_type_scss_icon_130177.svg": "/React-Post/static/media/file_type_scss_icon_130177.268e3eae7bab4d31e903.svg",
+    "static/media/bootstrap_plain_logo_icon_146619.svg": "/React-Post/static/media/bootstrap_plain_logo_icon_146619.333f5e43f07c0838ca3c.svg",
+    "static/media/javascript_original_logo_icon_146455.svg": "/React-Post/static/media/javascript_original_logo_icon_146455.f719efab5b799ddc35b5.svg",
+    "static/media/css_original_wordmark_logo_icon_146576.svg": "/React-Post/static/media/css_original_wordmark_logo_icon_146576.a79b97e79096bb163edb.svg",
+    "static/media/html_original_wordmark_logo_icon_146478.svg": "/React-Post/static/media/html_original_wordmark_logo_icon_146478.d0addc05618b04fad8a9.svg",
+    "static/media/gitlab_original_logo_icon_146503.svg": "/React-Post/static/media/gitlab_original_logo_icon_146503.9d0884b3585a737dd80a.svg",
+    "index.html": "/React-Post/index.html",
+    "static/media/file_type_git_icon_130581.svg": "/React-Post/static/media/file_type_git_icon_130581.45c85edfccc9a3b6bedd.svg",
+    "static/media/c_original_logo_icon_146611.svg": "/React-Post/static/media/c_original_logo_icon_146611.b3aa3b59af978d2e0274.svg",
+    "main.119e1da0.css.map": "/React-Post/static/css/main.119e1da0.css.map",
+    "main.8cc4317e.js.map": "/React-Post/static/js/main.8cc4317e.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.119e1da0.css",
+    "static/js/main.8cc4317e.js"
+  ]
+}
