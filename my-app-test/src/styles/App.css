@@ -91,12 +91,13 @@
   font-size: 18px;
   text-decoration: none;
   color: #000;
+  margin-right: 10%;
 
   transition: 0.1s linear color;
 }
 
-.link:first-child {
-  margin-right: 10%;
+.link:last-child {
+  margin-right: 0;
 }
 
 .link:hover {
